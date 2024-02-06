@@ -1,6 +1,6 @@
 version: 2.1
 
-workflow:
+workflows:
   version: 2
   build:
     jobs:
@@ -18,8 +18,8 @@ jobs:
     steps:
       - checkout
       - run:
-        name: update-npm
-        cammand: 'sudo npm install -g npm@5'
+          name: update-npm
+          cammand: 'sudo npm install -g npm@5'
       - restore_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
       - run:
