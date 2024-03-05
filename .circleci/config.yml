@@ -16,6 +16,7 @@ workflows:
                 - main        
           requires:
             - build        
+
 jobs:
   build:
     working_directory: ~/ExampleApplication
@@ -45,4 +46,5 @@ jobs:
     steps:
       - name: deploy-application
         when: on_success
-        command: ssh -o StrictHostKeyChecking=no $EC2_USERNAME@$EC2_PUBLIC_DNS "rm -rf ExampleApplication/; git clone https://github.com/NimrahNCI/ExampleApplication.git; source ExampleApplication/deploy.sh"
+        command: |
+          ssh -o StrictHostKeyChecking=no $EC2_USERNAME@$EC2_PUBLIC_DNS "rm -rf ExampleApplication/; git clone https://github.com/NimrahNCI/ExampleApplication.git; source ExampleApplication/deploy.sh"
