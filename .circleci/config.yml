@@ -15,7 +15,7 @@ workflows:
               only:
                 - main        
           requires:
-            -build        
+            - build        
 
 jobs:
   build:
@@ -43,5 +43,5 @@ jobs:
     docker:
       - image: circleci/node:10.16.3
     steps:
-      name: deploy-aplication
-      cammand: ssh -0 StrictHostKeyChecking=no $EC2_USERNAME@EC2_PUBLIC_DNS "rm -rf ExampleApplication/;git clone https://github.com/NimrahNCI/ExampleApplication.git; source ExampleApplication/deploy.sh"
+      - name: deploy-application
+        command: ssh -o StrictHostKeyChecking=no $EC2_USERNAME@$EC2_PUBLIC_DNS "rm -rf ExampleApplication/; git clone https://github.com/NimrahNCI/ExampleApplication.git; source ExampleApplication/deploy.sh"
